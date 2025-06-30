@@ -1,12 +1,15 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { removerProduct, addProductCount, reduceProductCount } from '../redux/store/features/cartSlice';
-import toast from 'react-hot-toast';
 
 const Cart = () => {
   const productCount = useSelector((state) => state.cart)
-  console.log(productCount)
+  // Calculate total items and price
+  const totalQty = productCount.reduce((totalQty, item)=> totalQty+item.qty,0)
+  const totalPrice = productCount.reduce((totalPrice, item)=> totalPrice + item.qty*item.price,0)
+ 
   const dispatch = useDispatch()
 
+  // Style Variables
   const productCard = {
     display: 'flex',
     justifyContent: 'space-between',
@@ -96,6 +99,8 @@ const Cart = () => {
           )
         })
       }
+      <p style={pName}>Item: {totalQty}</p>
+      <p style={pName}>Total Price: ${totalPrice}</p>
     </div>
   )
 }

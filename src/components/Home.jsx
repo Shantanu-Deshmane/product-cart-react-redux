@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import Product from './product';
+import {HashLoader, PropagateLoader} from 'react-spinners'
 
 const Home = () => {
   const [products, setProducts] = useState([])
@@ -22,7 +23,7 @@ const Home = () => {
       <div style={{ display: 'flex', justifyContent: 'space-evenly', flexWrap: 'wrap' }}>
         
         {
-          loadStatus ? <h1>Loading.....</h1> :
+          loadStatus ? <HashLoader style={{marginTop:'200px'}} size={80} color="#2bb700"/> :
           products.map((p) => {
             return (
               <div key={p.id}>
